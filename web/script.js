@@ -33,7 +33,7 @@ function setupCanvas() {
   var ctx = getCanvasContext();
 
   ctx.fillStyle = "#000";
-  ctx.fillRect(0,0,600,600);
+  ctx.fillRect(0,0,800,900);
 }
 
 function rgbaForLightIndex(lights, index, offset) {
