@@ -1,10 +1,6 @@
 package spi
 
-import (
-	"log"
-	"net/http"
-	"time"
-)
+import "time"
 
 // mocked spi interface matching
 // https://github.com/rakyll/experimental/blob/master/spi/spi.go
@@ -50,8 +46,8 @@ func Open(name string) (*Device, error) {
 	s := NewServer("/spi")
 	go s.Listen()
 
-	http.Handle("/", http.FileServer(http.Dir("/Users/nickoneill/gocode/src/spi/web")))
-	go func() { log.Fatal(http.ListenAndServe(":5480", nil)) }()
+	// xmas.go already does this
+	// go func() { log.Fatal(http.ListenAndServe(":5480", nil)) }()
 
 	return &Device{server: s}, nil
 }

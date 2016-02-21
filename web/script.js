@@ -5,21 +5,17 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
   setupCanvas();
 
-  var spisocket = new WebSocket("ws://localhost:5480/spi");
-  // spisocket.binaryType = "arraybuffer";
-  // var exampleSocket = new WebSocket("ws://www.example.com/socketserver", "protocolOne");
+  var spisocket = new WebSocket("ws://localhost:8080/spi");
 
   spisocket.onopen = function (event) {
     console.log("opened");
   };
 
   spisocket.onmessage = function (event) {
-    // console.log("got message",event.data);
 
     var reader = new FileReader();
     reader.addEventListener("loadend", function() {
       var dv = new DataView(reader.result);
-      // console.log("buffer",dv.byteLength,dv.getUint8(3+((82+20)*4)));
       drawLights(dv);
     });
     reader.readAsArrayBuffer(event.data);
@@ -46,16 +42,6 @@ function rgbaForLightIndex(lights, index, offset) {
   var b = lights.getUint8(4+((offset+parseInt(index))*4)+1);
   var g = lights.getUint8(4+((offset+parseInt(index))*4)+2);
   var r = lights.getUint8(4+((offset+parseInt(index))*4)+3);
-
-  // if (offset+(index*4) == 497) {
-  //   var uint = lights.getUint8(3+offset+(index*4) - 224);
-  //   var a = (lights.getUint8(3+offset+(index*4)) - 224) / 31;
-  //   var b = lights.getUint8(3+offset+(index*4)+1);
-  //   var g = lights.getUint8(3+offset+(index*4)+2);
-  //   var r = lights.getUint8(3+offset+(index*4)+3);
-  //   // var alpha = (lights.getUint8(4+offset+(index*4)) - 224);
-  //   console.log("c",a,b,g,r);
-  // }
 
   var rgba = "rgba(" + r +"," + g + "," + b + "," + a + ")";
   // console.log("pixel",rgba);
