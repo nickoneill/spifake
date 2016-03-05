@@ -18,9 +18,12 @@ type Device struct {
 }
 
 func (d *Device) Do(buf []byte, delay time.Duration) error {
-	// v := string(buf[:])
-
 	d.server.Send(buf[:])
+
+	// delay arbitrary amount because we're not spi and otherwise
+	// would have no delay
+	tick := time.Duration(50) * time.Millisecond
+	time.Sleep(tick)
 
 	return nil
 }
