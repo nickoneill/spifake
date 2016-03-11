@@ -6,5 +6,5 @@ If you're using this spi package https://github.com/rakyll/experimental/tree/mas
 
 `import spi "github.com/nickoneill/spifake"`
 
-![deck lights](deck-lights.gif)
+![deck lights](deck-lights.gif)<br />
 ![sim lights](sim-lights.gif)
