@@ -1,4 +1,4 @@
-# spifake-lights
+# spifake
 
 A replacement spi package that forwards messages via websockets for APA102-C lights. Cobbled together from a bunch of other example go.
 
